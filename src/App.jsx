@@ -90,6 +90,7 @@ export default function App() {
           progress={progress}
           isDirty={progress > 0}
           canMagic={progress === 2 && !isLocked}
+          isLocked={isLocked}
         />
       </section>
     </div>
