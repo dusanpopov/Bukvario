@@ -1,1 +1,5 @@
-Bukvario makes learning the Serbian Cyrillic alphabet actually fun. Kids get to trace letters right on the screen, and the app responds with colorful visuals and sounds when they make progress. It’s all about that hands-on experience. Built using React and the HTML5 Canvas API, the project focuses on providing a high-fidelity drawing interface that rewards progress with visual and audio feedback.
+Bukvario makes learning the Serbian Cyrillic alphabet actually fun. Kids get to trace letters right on the screen, and the app responds with colorful visuals and sounds when they make progress. It’s all about that hands-on experience. 
+
+Built using React and the HTML5 Canvas API, the project focuses on providing a high-fidelity drawing interface that rewards progress with visual and audio feedback.
+
+Demo: https://bukvario.vercel.app/
