@@ -22,7 +22,7 @@ export default function Controls({
     });
   };
 
-  // 🛠️ Logic for Button Text and Styling
+  // Logic for the Magic Button text
   const getButtonContent = () => {
     if (isLocked) return "БРАВО, НАСТАВИ ДАЉЕ! 🎉";
     if (canMagic) return "МАГИЈА ✨";
@@ -31,7 +31,7 @@ export default function Controls({
 
   return (
     <div className="flex flex-col items-center w-full h-full justify-evenly py-2">
-      {/* Obriši Button - Hidden when locked to clean up the UI */}
+      {/* Obriši Button - Disabled when the letter is completed */}
       <button
         onClick={onClear}
         disabled={!isDirty || isLocked}
@@ -44,7 +44,7 @@ export default function Controls({
         ОБРИШИ 🗑️
       </button>
 
-      {/* Stars */}
+      {/* Stars Unlock Visuals */}
       <div className="flex gap-4">
         {[1, 2].map((s) => (
           <span
@@ -60,38 +60,45 @@ export default function Controls({
         ))}
       </div>
 
-      {/* Navigation Row */}
+      {/* Navigation and Action Row */}
       <div className="flex items-center gap-6">
+        {/* Previous Button - Pulsates mint when finished */}
         <button
           onClick={onPrev}
-          className="btn-nav text-2xl p-3 cursor-pointer"
+          className={`btn-nav text-2xl p-3 cursor-pointer transition-all duration-500 ${
+            isLocked ? "animate-pulse-mint border-none" : ""
+          }`}
         >
           ❮
         </button>
 
-        {/* 🛠️ UPDATED MAGIC BUTTON */}
+        {/* Central Magic Button */}
         <button
           onClick={handleMagic}
           disabled={!canMagic || isLocked}
           className={`min-w-60 py-3 text-sm font-black rounded-xl transition-all duration-500 shadow-lg ${
             isLocked
-              ? "bg-ui-dark text-bg-main scale-105 pointer-events-none" // Locked state: full color, no clicks
+              ? "bg-ui-dark text-bg-main scale-105 pointer-events-none"
               : canMagic
-                ? "btn-magic cursor-pointer active:scale-95" // Ready state
-                : "bg-ui-dark/10 text-ui-dark/30 cursor-not-allowed" // Progressing state
+                ? "btn-magic cursor-pointer active:scale-95"
+                : "bg-ui-dark/10 text-ui-dark/30 cursor-not-allowed"
           }`}
         >
           {getButtonContent()}
         </button>
 
+        {/* Next Button - Pulsates mint when finished */}
         <button
           onClick={onNext}
-          className="btn-nav text-2xl p-3 cursor-pointer"
+          className={`btn-nav text-2xl p-3 cursor-pointer transition-all duration-500 ${
+            isLocked ? "animate-pulse-mint border-none" : ""
+          }`}
         >
           ❯
         </button>
       </div>
 
+      {/* Footer Progress Text */}
       <p className="text-ui-dark font-black text-[10px] uppercase tracking-widest opacity-80">
         СЛОВО {current + 1} / {total}
       </p>
