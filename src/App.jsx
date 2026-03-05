@@ -40,26 +40,27 @@ export default function App() {
   };
 
   return (
-    // pb-8 ensures a safety gutter at the very bottom of the screen
-    <div className="h-screen w-full flex flex-col items-center justify-between bg-bg-main p-2 pb-8 overflow-hidden relative">
+    /* h-[100dvh] fixes the "clipped bottom" issue on mobile browsers */
+    <div className="h-dvh w-full flex flex-col items-center justify-between bg-bg-main p-2 pb-4 overflow-hidden relative">
       {!gameStarted && <StartScreen onStart={() => setGameStarted(true)} />}
 
       <button
         onClick={() => setIsMuted(!isMuted)}
-        className="fixed top-4 right-4 text-3xl z-50 text-ui-dark hover:scale-110 active:scale-90 transition-all cursor-pointer"
+        className="fixed top-4 right-4 text-3xl z-50 text-ui-dark active:scale-90 transition-all cursor-pointer"
       >
         {isMuted ? "🔇" : "🔊"}
       </button>
 
-      <header className="h-[10%] w-full flex items-center justify-center pt-2 pointer-events-none z-30">
+      {/* Header section with a fixed height percentage */}
+      <header className="h-[8%] min-h-12.5 w-full flex items-center justify-center pt-2 pointer-events-none z-30">
         <div className="pointer-events-auto">
           <Header />
         </div>
       </header>
 
-      {/* mb-8 creates the gap between the dark canvas and the Obriši button */}
+      {/* Main Canvas area is now flexible but capped to ensure buttons have space */}
       <main
-        className={`h-[60%] w-full flex items-center justify-center z-10 mb-8 transition-all duration-700 ${gameStarted ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}
+        className={`flex-1 w-full max-h-[55%] flex items-center justify-center z-10 my-2 transition-all duration-700 ${gameStarted ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}
       >
         <div className="canvas-frame">
           <Canvas
@@ -72,7 +73,8 @@ export default function App() {
         </div>
       </main>
 
-      <section className="h-[25%] w-full flex flex-col items-center justify-center pt-1 gap-2 z-20">
+      {/* Controls section with enough reserved height for all elements */}
+      <section className="h-[32%] min-h-55 w-full flex flex-col items-center justify-center z-20">
         <Controls
           onNext={() => resetLetter((index + 1) % AZBUKA.length)}
           onPrev={() =>
