@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-main: #facc15; /* The Accent Yellow */
+  --color-ui-dark: #0f172a;
+  --color-accent-red: #ef4444;
+  --color-ink-mint: #10b981;
+  
+  --font-kids: "Fredoka", sans-serif;
+}
+
+/* base styles */
+@layer base {
+  body {
+    @apply bg-bg-main font-kids text-ui-dark overflow-hidden h-screen;
+  }
+}
+
+/* UI components */
+@layer components {
+  .btn-magic {
+    @apply px-8 py-3 bg-accent-red text-white font-black rounded-xl 
+         shadow-[0_4px_0_0_#991b1b] transition-all active:translate-y-1 
+         active:shadow-none disabled:opacity-30 disabled:grayscale;
+  }
+
+  .btn-nav {
+    @apply w-12 h-12 flex items-center justify-center bg-ui-dark 
+         rounded-full border-b-4 border-slate-950 text-white 
+         transition-all active:translate-y-1 active:border-b-0
+         hover:bg-slate-800 text-xl;
+  }
+
+  .canvas-frame {
+    @apply relative flex items-center justify-center 
+         bg-slate-900 z-10 /* 👈 Added z-10 to stay on top */
+         w-[min(85vw,52vh)] h-[min(85vw,52vh)] mx-auto 
+         shadow-2xl rounded-[2.5rem] border-4 border-ui-dark;
+  }
+
+}
+
+canvas {
+  @apply w-full h-full block !cursor-pointer !z-20;
+  touch-action: none;
+}
+
