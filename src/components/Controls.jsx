@@ -31,7 +31,6 @@ export default function Controls({
 
   return (
     <div className="flex flex-col items-center w-full h-full justify-evenly py-2">
-      {/* Obriši Button - Disabled when the letter is completed */}
       <button
         onClick={onClear}
         disabled={!isDirty || isLocked}

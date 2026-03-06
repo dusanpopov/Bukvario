@@ -40,7 +40,6 @@ export default function App() {
   };
 
   return (
-    /* h-[100dvh] fixes the "clipped bottom" issue on mobile browsers */
     <div className="h-dvh w-full flex flex-col items-center justify-between bg-bg-main p-2 pb-4 overflow-hidden relative">
       {!gameStarted && <StartScreen onStart={() => setGameStarted(true)} />}
 
@@ -51,14 +50,12 @@ export default function App() {
         {isMuted ? "🔇" : "🔊"}
       </button>
 
-      {/* Header section with a fixed height percentage */}
       <header className="h-[8%] min-h-12.5 w-full flex items-center justify-center pt-2 pointer-events-none z-30">
         <div className="pointer-events-auto">
           <Header />
         </div>
       </header>
 
-      {/* Main Canvas area is now flexible but capped to ensure buttons have space */}
       <main
         className={`flex-1 w-full max-h-[55%] flex items-center justify-center z-10 my-2 transition-all duration-700 ${gameStarted ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}
       >
@@ -73,7 +70,6 @@ export default function App() {
         </div>
       </main>
 
-      {/* Controls section with enough reserved height for all elements */}
       <section className="h-[32%] min-h-55 w-full flex flex-col items-center justify-center z-20">
         <Controls
           onNext={() => resetLetter((index + 1) % AZBUKA.length)}
