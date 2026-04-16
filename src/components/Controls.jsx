@@ -1,4 +1,5 @@
 import confetti from "canvas-confetti";
+import { useCallback } from "react";
 
 export default function Controls({
   onNext,
@@ -12,7 +13,7 @@ export default function Controls({
   isDirty,
   isLocked,
 }) {
-  const handleMagic = () => {
+  const handleMagic = useCallback(() => {
     onMagic();
     confetti({
       particleCount: 150,
@@ -20,9 +21,8 @@ export default function Controls({
       origin: { y: 0.8 },
       colors: ["#EF4444", "#10B981", "#0F172A"],
     });
-  };
+  }, [onMagic]);
 
-  // Logic for the Magic Button text
   const getButtonContent = () => {
     if (isLocked) return "БРАВО, НАСТАВИ ДАЉЕ! 🎉";
     if (canMagic) return "МАГИЈА ✨";
@@ -43,7 +43,6 @@ export default function Controls({
         ОБРИШИ 🗑️
       </button>
 
-      {/* Stars Unlock Visuals */}
       <div className="flex gap-4">
         {[1, 2].map((s) => (
           <span
@@ -59,9 +58,7 @@ export default function Controls({
         ))}
       </div>
 
-      {/* Navigation and Action Row */}
       <div className="flex items-center gap-6">
-        {/* Previous Button - Pulsates mint when finished */}
         <button
           onClick={onPrev}
           className={`btn-nav text-2xl p-3 cursor-pointer transition-all duration-500 ${
@@ -71,7 +68,6 @@ export default function Controls({
           ❮
         </button>
 
-        {/* Central Magic Button */}
         <button
           onClick={handleMagic}
           disabled={!canMagic || isLocked}
@@ -86,7 +82,6 @@ export default function Controls({
           {getButtonContent()}
         </button>
 
-        {/* Next Button - Pulsates mint when finished */}
         <button
           onClick={onNext}
           className={`btn-nav text-2xl p-3 cursor-pointer transition-all duration-500 ${
@@ -97,7 +92,6 @@ export default function Controls({
         </button>
       </div>
 
-      {/* Footer Progress Text */}
       <p className="text-ui-dark font-black text-[10px] uppercase tracking-widest opacity-80">
         СЛОВО {current + 1} / {total}
       </p>
